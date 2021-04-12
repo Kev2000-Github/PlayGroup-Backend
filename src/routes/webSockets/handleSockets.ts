@@ -29,6 +29,10 @@ export const handleSocket = (io: socketIO.Server) => {
                 socket.to(rivalPlayerId).emit("conclusion", "You Lose");
                 callback("You Win!");
             }
+            else if (result === null) {
+                socket.to(roomId).emit("conclusion", "Draw");
+                callback("Draw");
+            }
         })
 
         socket.on("leave", ({ roomId }) => {

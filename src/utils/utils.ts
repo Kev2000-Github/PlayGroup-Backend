@@ -8,5 +8,6 @@ export function tictactoe(arr) {
 	sums = [Math.abs(biArr[0][0] + biArr[1][1] + biArr[2][2])];
 	sums.push(Math.abs(biArr[2][0] + biArr[1][1] + biArr[0][2]));
 	if (sums.includes(3)) return true;
+	if (!arr.includes(0)) return null;
 	return false;
 }
