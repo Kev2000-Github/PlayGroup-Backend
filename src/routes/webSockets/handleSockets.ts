@@ -23,10 +23,7 @@ export const handleSocket = (io: socketIO.Server) => {
             socket.to(roomId).emit("set_play", { grid });
             const result = tictactoe(grid);
             if (result) {
-                console.log("FINISHED")
-                const room = await getRoom(roomId);
-                const rivalPlayerId = playerId === room.playerHost.uuid ? room.playerTwo.uuid : room.playerHost.uuid;
-                socket.to(rivalPlayerId).emit("conclusion", "You Lose");
+                socket.to(roomId).emit("conclusion", "You Lose");
                 callback("You Win!");
             }
             else if (result === null) {
