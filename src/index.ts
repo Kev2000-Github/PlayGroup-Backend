@@ -4,9 +4,10 @@ import { router } from "./routes/app";
 import compression from "compression";
 import { config } from "./config/config";
 import { corsConfig } from "./config/corsConfig";
-import { handleSocket } from "./routes/webSockets/handleSockets";
+import { tictactoeSocket } from "./routes/webSockets/tictactoeSockets";
 import http from 'http';
 import socketIO from 'socket.io';
+import { chessSocket } from './routes/webSockets/chessSockets';
 require('./database/database');
 
 const app = express();
@@ -26,7 +27,8 @@ app.use(cors(corsConfig));
 app.use(compression());
 app.use(express.json());
 app.use("/", router);
-handleSocket(io);
+tictactoeSocket(io);
+chessSocket(io);
 
 //SERVER
 server.listen(app.get("PORT"), () => {
